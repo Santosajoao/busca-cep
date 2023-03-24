@@ -1,24 +1,66 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState} from 'react';
+import {FaSearchLocation} from 'react-icons/fa';
+import "./Styles.css";
+import Api from './services/Api';
 
-function App() {
+
+function App(){
+
+  var [input, setInput] = useState('')
+  var [data, setData] = useState({})
+
+  async function handleSearch(){
+    
+    if(input === ""){
+    alert("Preencha algum CEP")
+    return;
+    } 
+
+    try{
+      
+      var response = await Api.get(input + '/json');
+
+      setData(response.data);
+      setInput("");
+
+    }
+    catch{
+      alert("Erro ao buscar o CEP");
+      setInput("");
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className="container">
+      <h1 className="title">Buscador de CEP</h1>
+
+      <div className="containerInput">
+        
+        <input 
+        type="text"
+        placeholder="Digite o seu CEP"
+        value={input}
+        onChange={(event) => setInput(event.target.value)}
+        />
+
+        
+
+        <button className="buttonSearch" onClick={handleSearch}>
+          <FaSearchLocation size="25" color="	#FFFF"/>
+        </button>
+      </div>
+
+      {Object.keys(data).length > 0 &&(
+      <main className="main">
+        <h2>CEP: {data.cep}</h2>
+        <span>Rua: {data.logradouro}</span>
+        <span>Bairro: {data.bairro}</span>
+        <span>Cidade: {data.localidade}</span>
+        <span>Estado: {data.uf}</span>
+      </main>
+      )};
+    </div>   
+    
   );
 }
 
