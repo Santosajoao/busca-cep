@@ -1,6 +1,7 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).<br>
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 Visit it: https://busca-cep-ruddy-phi.vercel.app/
 
 ## Available Scripts
