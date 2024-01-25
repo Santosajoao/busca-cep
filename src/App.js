@@ -57,6 +57,7 @@ function App(){
         <span>Bairro: {data.bairro}</span>
         <span>Cidade: {data.localidade}</span>
         <span>Estado: {data.uf}</span>
+        <span>DDD: {data.ddd}</span>
       </main>
       )};
     </div>   
