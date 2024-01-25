@@ -59,7 +59,7 @@ function App(){
         <span>Estado: {data.uf}</span>
         <span>DDD: {data.ddd}</span>
       </main>
-      )};
+      )}
     </div>   
     
   );
